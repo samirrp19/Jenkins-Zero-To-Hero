@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkinsnow
+  labels:
+    app: jenkinsnow
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: jenkinsnow
+  template:
+    metadata:
+      labels:
+        app: jenkinsnow
+    spec:
+      containers:
+        - name: jenkinsnow
+          image: samirrp19/jenkinsnow:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7000
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "1"

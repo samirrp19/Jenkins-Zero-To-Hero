@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkinsnow-service
+  labels:
+    app: jenkinsnow
+spec:
+  type: ClusterIP
+  selector:
+    app: jenkinsnow
+  ports:
+    - name: http
+      protocol: TCP
+      port: 7000
+      targetPort: 7000
