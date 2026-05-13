@@ -1,15 +1,17 @@
-# You can change this base image to anything else
-# But make sure to use the correct version of Java
-FROM adoptopenjdk/openjdk11:alpine-jre
+# Use Java 17 runtime image
+FROM eclipse-temurin:17-jre-alpine
 
-# Simply the artifact path
-ARG artifact=target/spring-boot-web.jar
+# Application JAR path
+ARG JAR_FILE=target/spring-boot-web.jar
 
+# Create app directory
 WORKDIR /opt/app
 
-COPY ${artifact} app.jar
+# Copy JAR file into container
+COPY ${JAR_FILE} app.jar
 
+# Expose application port
 EXPOSE 7000
 
-# This should not be changed
-ENTRYPOINT ["java","-jar","app.jar"]
+# Run application
+ENTRYPOINT ["java", "-jar", "app.jar"]
